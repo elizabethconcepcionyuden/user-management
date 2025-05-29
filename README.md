@@ -46,7 +46,7 @@ docker run -p 8080:8080 user-management
 ```
 
 ## Diagrama de la solución
-Diagrama de la solucion [https://www.plantuml.com/](https://www.plantuml.com/).
+![img.png](img.png)
 
 ## Pruebas Unitarias
 -estan ubicadas en la carpeta `src/test/java`
