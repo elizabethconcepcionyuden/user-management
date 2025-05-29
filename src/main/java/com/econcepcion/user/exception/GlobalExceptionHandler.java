@@ -10,6 +10,12 @@ import java.util.Objects;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ErrorResponseDto handleEmailAlReady(EmailAlreadyExistsException ex) {
+        return new ErrorResponseDto(ex.getLocalizedMessage());
+    }
+
     @ExceptionHandler(BadRequestApiException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponseDto handleBadRequest(BadRequestApiException ex) {

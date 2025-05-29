@@ -4,57 +4,66 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
+    @Entity
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    @Table(name = "\"user\"")
+    public class User implements Serializable {
 
-    @Id
-    @GeneratedValue(generator = "UUID")
-    private UUID id;
+        private static final long serialVersionUID = 1L;
 
-    @Column(name ="name", nullable = false)
-    private String name;
+        @Id
+        private UUID id;
 
-    @Column(name ="email", nullable = false, unique = true)
-    private String email;
+        @Column(name = "name", nullable = false)
+        private String name;
 
-    @Column(name ="password", nullable = false)
-    private String password;
+        @Column(name = "email", nullable = false, unique = true)
+        private String email;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Phone> phones;
+        @Column(name = "password", nullable = false)
+        private String password;
 
-    @Column(name ="is_active", nullable = false)
-    private Boolean isActive;
+        @OneToMany(
+                cascade = CascadeType.ALL,
+                orphanRemoval = true,
+                mappedBy = "user",
+                fetch = FetchType.LAZY
+        )
+        private List<Phone> phones;
 
-    @Column(name ="created", nullable = false, updatable = false)
-    private Date created;
+        @Column(name = "is_active", nullable = false)
+        private Boolean isActive;
 
-    @Column(name ="modified",nullable = false)
-    private Date modified;
+        @Column(name = "created", nullable = false, updatable = false)
+        @Temporal(TemporalType.TIMESTAMP)
+        private Date created;
 
-    @Column(name ="last_login",nullable = false)
-    private Date lastLogin;
+        @Column(name = "modified", nullable = false)
+        @Temporal(TemporalType.TIMESTAMP)
+        private Date modified;
 
-    @Column(name ="token",nullable = false)
-    private String token;
+        @Column(name = "last_login", nullable = false)
+        @Temporal(TemporalType.TIMESTAMP)
+        private Date lastLogin;
 
-    public void initializeDefaults(Date now, String token) {
-        this.created = now;
-        this.modified = now;
-        this.lastLogin = now;
-        this.isActive = true;
-        this.token = token;
+        @Column(name = "token", nullable = false)
+        private String token;
+
+        public void initializeDefaults(Date now, String token) {
+            if (this.id == null) {
+                this.id = UUID.randomUUID();
+            }
+            this.created = now;
+            this.modified = now;
+            this.lastLogin = now;
+            this.isActive = true;
+            this.token = token;
+        }
     }
-
-
-}
