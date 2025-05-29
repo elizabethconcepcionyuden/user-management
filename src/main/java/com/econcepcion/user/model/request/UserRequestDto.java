@@ -1,26 +1,28 @@
 package com.econcepcion.user.model.request;
 
+import com.econcepcion.user.validation.ValidEmail;
+import com.econcepcion.user.validation.ValidPassword;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
 public class UserRequestDto {
 
-    @NotBlank(message = "El nombre es obligatorio")
+    @NotBlank(message = "{field.required}")
     private String name;
 
-    @NotBlank(message = "El correo es obligatorio")
+    @ValidEmail
+    @NotBlank(message = "{field.required}")
     private String email;
 
-    @NotBlank(message = "La contraseña es obligatoria")
+    @ValidPassword(message = "{password.invalid.format}")
+    @NotBlank(message = "{field.required}")
     private String password;
 
-    @NotNull(message = "Los teléfonos no pueden estar vacíos")
-    @Size(min = 1, message = "Debe haber al menos un teléfono")
     private List<PhoneRequestDto> phones;
 }
+
 
 

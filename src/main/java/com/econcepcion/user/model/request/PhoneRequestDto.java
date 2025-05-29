@@ -6,12 +6,12 @@ import lombok.Data;
 @Data
 public class PhoneRequestDto {
 
-    @NotBlank(message = "El número es obligatorio")
+    @NotBlank(message = "{phone.number.required}")
     private String number;
 
-    @NotBlank(message = "El código de ciudad es obligatorio")
+    @NotBlank(message = "{phone.cityCode.required}")
     private String cityCode;
 
-    @NotBlank(message = "El código de país es obligatorio")
+    @NotBlank(message = "{phone.countryCode.required}")
     private String countryCode;
 }
