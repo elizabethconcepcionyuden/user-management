@@ -1,17 +1,26 @@
 package com.econcepcion.user.model.request;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
 public class PhoneRequestDto {
 
-    @NotBlank(message = "{phone.number.required}")
+    @Min(value = 0, message = "{number.required}")
+    @Size(max = 15)
+    @NotNull(message = "{field.required}")
     private String number;
 
-    @NotBlank(message = "{phone.cityCode.required}")
+    @Min(value = 0, message = "{number.required}")
+    @Size(max = 15)
+    @NotNull(message = "{field.required}")
     private String cityCode;
 
-    @NotBlank(message = "{phone.countryCode.required}")
+    @Min(value = 0, message = "{number.required}")
+    @Size(max = 15)
+    @NotNull(message = "{field.required}")
     private String countryCode;
 }

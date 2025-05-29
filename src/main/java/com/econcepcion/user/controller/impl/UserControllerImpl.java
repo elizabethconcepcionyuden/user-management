@@ -15,14 +15,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@Tag(name = "User")
 @RestController
 @RequestMapping(
         value = "/users",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE
 )
-@Tag(name = "User API", description = "API for user creation")
+@Tag(name = "User", description = "API for user creation")
 public class UserControllerImpl implements UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserControllerImpl.class);
