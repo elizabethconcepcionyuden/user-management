@@ -1,4 +1,4 @@
-package com.econcepcion.user.model.dto;
+package com.econcepcion.user.model.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -10,8 +10,8 @@ public class PhoneRequestDto {
     private String number;
 
     @NotBlank(message = "El código de ciudad es obligatorio")
-    private String citycode;
+    private String cityCode;
 
     @NotBlank(message = "El código de país es obligatorio")
-    private String contrycode;
+    private String countryCode;
 }

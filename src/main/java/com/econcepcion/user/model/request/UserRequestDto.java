@@ -1,4 +1,4 @@
-package com.econcepcion.user.model.dto;
+package com.econcepcion.user.model.request;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -21,12 +21,6 @@ public class UserRequestDto {
     @NotNull(message = "Los teléfonos no pueden estar vacíos")
     @Size(min = 1, message = "Debe haber al menos un teléfono")
     private List<PhoneRequestDto> phones;
-
-    private Date created;
-
-    private Date modified;
-
-    private Date lastLogin;
-
-    private Boolean isActive;
 }
+
+
